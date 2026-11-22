@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- 文字化けしないように、文字コードを指定 -->
+  <meta charset="UTF-8">
+  <!-- スマホの画面幅に合わせて表示する設定 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- ブラウザのタブに表示される名前 -->
+  <title>OGAWA TAISEI | ポートフォリオ</title>
+  <!-- 検索結果などに出る、このページの説明 -->
+  <meta name="description" content="OGAWA TAISEI のポートフォリオ。フットサル選手として活動しながら、AI と一緒に Web アプリを作っています。">
+  <!-- 日本語のきれいな文字（Google Fonts の Noto Sans JP）を読み込む。無料で使える -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- 見た目の設定ファイル -->
+  <link rel="stylesheet" href="style.css">
+  <!-- 動きの設定ファイル。defer = 画面の部品がそろってから動かす -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- ===== 上のメニュー（スクロールしても上に残る） ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- 左上の名前。押すとページの一番上に戻る -->
+      <a href="#top" class="logo">OGAWA TAISEI</a>
+
+      <!-- スマホのときだけ出る ☰ ボタン -->
+      <button type="button" id="nav-toggle" class="nav-toggle" aria-label="メニュー" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- ページの中の各場所へのリンク。href="#about" = id="about" の場所へ移動する -->
+      <nav id="site-nav" class="site-nav">
+        <a href="#about">About</a>
+        <a href="#works">Works</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ===== トップ（最初に見える大きな部分） ===== -->
+    <section class="hero">
+      <div class="container">
+        <!-- 肩書き：フットサル選手 × AI で作る人 -->
+        <p class="hero-hello">Futsal Player × AI Creator</p>
+        <h1 class="hero-name">OGAWA TAISEI</h1>
+        <p class="hero-lead">
+          ピッチではフットサル選手として。<br>
+          ピッチの外では、AI と一緒に<br class="sp-only">Web アプリを作っています。
+        </p>
+        <div class="hero-buttons">
+          <a href="#works" class="button">作品を見る</a>
+          <a href="#contact" class="button button-outline">連絡先</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 自己紹介 ===== -->
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title"><span>About</span>自己紹介</h2>
+        <div class="about">
+          <!-- 丸いアイコン（仮のイラスト：フットサルボールと電子回路）。あとで自分の写真などに変えられる -->
+          <img src="images/avatar.svg" alt="フットサルボールと電子回路のイラスト" class="avatar">
+          <div class="about-text">
+            <!-- 名前と肩書き -->
+            <p class="about-name">OGAWA TAISEI</p>
+            <p class="about-role">フットサル選手 / AI × Web アプリ制作</p>
+            <p>
+              フットサル選手として、日々ピッチで汗を流しているアスリートです。
+              チームで勝つために考え、走り、仲間と工夫を重ねる——その姿勢を、ものづくりにも生かしています。
+            </p>
+            <p>
+              ピッチの外では、AI（Claude Code）と一緒に、身の回りの「ちょっと不便」を解決する Web アプリを作っています。
+              1ステップずつ作り方を理解しながら進め、できるだけ無料のサービスだけで、スマホからすぐ使えるアプリにすることを大切にしています。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 作品 ===== -->
+    <section id="works" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title"><span>Works</span>作品</h2>
+
+        <div class="works">
+          <!-- 作品1：家計簿 -->
+          <article class="work-card">
+            <img src="images/kakeibo.png" alt="家計簿アプリの画面" class="work-image" loading="lazy">
+            <div class="work-body">
+              <h3>家計簿</h3>
+              <p>
+                レシートを撮るだけで、金額・日付・分類を自動で入力できる家計簿アプリ。
+                カレンダーと表で毎日の出費を見られて、PC と iPhone のデータは自動でそろいます。
+              </p>
+              <ul class="work-points">
+                <li>レシートの文字読み取り（金額・日付・分類の自動入力）</li>
+                <li>複数の家計簿（個人用・事業用など）の切り替え</li>
+                <li>PC と iPhone の自動同期・バックアップ</li>
+              </ul>
+              <ul class="tags">
+                <li>HTML / CSS / JavaScript</li>
+                <li>Tesseract.js</li>
+                <li>Firebase</li>
+                <li>PWA</li>
+              </ul>
+              <div class="work-links">
+                <!-- target="_blank" = 新しいタブで開く。rel="noopener" は安全のためのおまじない -->
+                <a href="https://yolo-vision.github.io/kakeibo/" class="button button-small" target="_blank" rel="noopener">アプリを開く</a>
+                <a href="https://github.com/YOLO-vision/kakeibo" class="button button-small button-outline" target="_blank" rel="noopener">GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 作品2：勤怠ノート（PC の中で動かしているので、画像の代わりにアイコンを置く） -->
+          <article class="work-card">
+            <div class="work-image work-image-placeholder" aria-hidden="true">
+              <span>🕒</span>
+            </div>
+            <div class="work-body">
+              <h3>勤怠ノート</h3>
+              <p>
+                出勤・退勤の打刻から、タイムカード・各種申請・カレンダーまでをまとめた勤怠管理アプリ。
+                スマホのホーム画面に追加して、アプリとして使えます。
+              </p>
+              <ul class="work-points">
+                <li>打刻・タイムカード・申請・承認</li>
+                <li>Google カレンダーとの連携</li>
+                <li>管理者と一般の権限の切り替え</li>
+              </ul>
+              <ul class="tags">
+                <li>HTML / CSS / JavaScript</li>
+                <li>PowerShell</li>
+                <li>PWA</li>
+              </ul>
+              <p class="work-note">※ 現在は PC の中で動かしています（公開準備中）</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 使える技術 ===== -->
+    <section id="skills" class="section">
+      <div class="container">
+        <h2 class="section-title"><span>Skills</span>使える技術</h2>
+        <div class="skills">
+          <div class="skill-group">
+            <h3>画面づくり</h3>
+            <ul class="tags">
+              <li>HTML</li>
+              <li>CSS（スマホ・PC 両対応）</li>
+              <li>JavaScript</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>しくみ・サービス</h3>
+            <ul class="tags">
+              <li>Firebase（ログイン・データベース）</li>
+              <li>PWA（ホーム画面に追加できるアプリ）</li>
+              <li>Tesseract.js（文字の読み取り）</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>道具</h3>
+            <ul class="tags">
+              <li>Git / GitHub</li>
+              <li>GitHub Pages（無料公開）</li>
+              <li>Claude Code</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 連絡先 ===== -->
+    <section id="contact" class="section section-alt">
+      <div class="container contact">
+        <h2 class="section-title"><span>Contact</span>連絡先</h2>
+        <p>作品へのご感想や、お仕事のご相談はこちらからどうぞ。</p>
+        <div class="contact-links">
+          <a href="https://www.instagram.com/ogawa.taisei.0814/" class="button" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://github.com/YOLO-vision" class="button button-outline" target="_blank" rel="noopener">GitHub</a>
+          <!-- ↓ メールなどを載せるときは、ここにボタンを足す -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== 一番下 ===== -->
+  <footer class="site-footer">
+    <!-- 年は script.js が今年の数字に書きかえる -->
+    <p>&copy; <span id="year">2026</span> OGAWA TAISEI</p>
+  </footer>
+
+</body>
+</html>

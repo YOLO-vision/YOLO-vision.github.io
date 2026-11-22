@@ -1,0 +1,512 @@
+/* ===== テーマの色 ===== */
+/* 色に名前を付けておき、下では var(--main) のように名前で使う。ここを直せば全体の色が変わる */
+:root {
+  --main: #4f5bd5;          /* 藍色（ボタン・見出しの英語など） */
+  --main-dark: #3a45b0;     /* 濃い藍色（マウスを乗せたとき） */
+  --main-light: #eef0fc;    /* うすい藍色（タグの背景など） */
+  --text: #1f2430;          /* 文字 */
+  --text-sub: #5b6273;      /* うすめの文字 */
+  --bg: #ffffff;            /* 背景 */
+  --bg-alt: #f5f6fa;        /* 1つおきのセクションの背景 */
+  --card: #ffffff;          /* カードの背景 */
+  --line: #e3e6ee;          /* 線 */
+}
+
+/* スマホや PC が「ダーク表示」の設定のときは、暗い色にする */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main: #8b95f0;
+    --main-dark: #a9b1f5;
+    --main-light: #262a45;
+    --text: #e8eaf0;
+    --text-sub: #a3a9b8;
+    --bg: #14161d;
+    --bg-alt: #1b1e27;
+    --card: #222632;
+    --line: #2f3442;
+  }
+}
+
+/* ===== ページ全体 ===== */
+* {
+  box-sizing: border-box;     /* 幅にすき間や枠線も含めて計算する */
+}
+
+html {
+  scroll-behavior: smooth;    /* メニューを押したとき、なめらかにスクロールする */
+  scroll-padding-top: 72px;   /* 上のメニューに見出しが隠れないように、少し手前で止める */
+}
+
+body {
+  margin: 0;
+  font-family: "Noto Sans JP", sans-serif;
+  color: var(--text);
+  background-color: var(--bg);
+  line-height: 1.8;           /* 行の間を広めにして読みやすく */
+}
+
+a {
+  color: var(--main);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* 中身の横幅をそろえる入れ物。広い画面でも横に広がりすぎないように */
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* スマホのときだけ改行する <br> */
+.sp-only {
+  display: none;
+}
+
+/* ===== ボタン ===== */
+.button {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 999px;       /* 両はしを丸く */
+  background-color: var(--main);
+  border: 2px solid var(--main);
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;      /* リンクの下線を消す */
+  transition: background-color 0.2s, transform 0.2s; /* 色や位置を、ふわっと変える */
+}
+
+.button:hover {
+  background-color: var(--main-dark);
+  border-color: var(--main-dark);
+  transform: translateY(-2px); /* マウスを乗せると少し浮く */
+}
+
+/* 白地に枠だけのボタン */
+.button-outline {
+  background-color: transparent;
+  color: var(--main);
+}
+
+.button-outline:hover {
+  background-color: var(--main-light);
+  border-color: var(--main);
+}
+
+/* 小さめのボタン（作品のカードの中） */
+.button-small {
+  padding: 8px 20px;
+  font-size: 14px;
+}
+
+/* ===== 上のメニュー ===== */
+.site-header {
+  position: sticky;           /* スクロールしても上に残る */
+  top: 0;
+  z-index: 10;
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 名前は左、メニューは右 */
+  height: 64px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-nav {
+  display: flex;
+  gap: 28px;
+}
+
+.site-nav a {
+  color: var(--text-sub);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.site-nav a:hover {
+  color: var(--main);
+}
+
+/* ☰ ボタン（PC では隠す） */
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-toggle span {
+  width: 22px;
+  height: 2px;
+  background-color: var(--text);
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+/* メニューを開いているときは、☰ を × の形にする */
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ===== トップ ===== */
+.hero {
+  padding: 120px 0 110px;
+  text-align: center;
+  /* うすい藍色から背景の色へ、上から下に変わる色 */
+  background: linear-gradient(180deg, var(--main-light) 0%, var(--bg) 100%);
+}
+
+.hero-hello {
+  margin: 0;
+  color: var(--main);
+  font-weight: 700;
+  letter-spacing: 0.1em;      /* 文字の間を少し広く */
+}
+
+.hero-name {
+  margin: 8px 0 16px;
+  font-size: 56px;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.hero-lead {
+  margin: 0 0 36px;
+  font-size: 18px;
+  color: var(--text-sub);
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;            /* 狭い画面では折り返す */
+}
+
+/* ===== セクション共通 ===== */
+.section {
+  padding: 88px 0;
+}
+
+/* 1つおきに背景の色を変えて、区切りをわかりやすく */
+.section-alt {
+  background-color: var(--bg-alt);
+}
+
+/* 見出し：上に小さく英語、下に日本語 */
+.section-title {
+  margin: 0 0 40px;
+  font-size: 28px;
+  text-align: center;
+}
+
+.section-title span {
+  display: block;
+  font-size: 14px;
+  color: var(--main);
+  letter-spacing: 0.15em;
+}
+
+/* ===== 自己紹介 ===== */
+.about {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* 丸いアイコン（画像） */
+.avatar {
+  flex-shrink: 0;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;            /* 写真に変えたときも、丸の形に合わせて切りぬく */
+  box-shadow: 0 8px 24px rgba(79, 91, 213, 0.25); /* うっすら藍色の影 */
+}
+
+.about-text p {
+  margin: 0 0 12px;
+}
+
+/* 名前 */
+.about-text .about-name {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* 肩書き */
+.about-text .about-role {
+  margin: 0 0 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--main);
+}
+
+/* ===== 作品 ===== */
+/* カードを2列に並べる（スマホでは1列） */
+.works {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.work-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;           /* 画像の角もカードと同じく丸く */
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.work-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* 作品の画像：横長の同じ形にそろえる */
+.work-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;      /* 横16：縦10 の形 */
+  object-fit: cover;          /* 形に合わせて、はみ出た分は切る */
+  object-position: top;       /* 上をそろえる */
+  border-bottom: 1px solid var(--line);
+}
+
+/* 画像がない作品の代わりの絵 */
+.work-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  background: linear-gradient(135deg, var(--main-light) 0%, var(--bg-alt) 100%);
+}
+
+.work-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;                    /* カードの高さがそろうように、下まで伸ばす */
+}
+
+.work-body h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.work-body p {
+  margin: 0 0 12px;
+  color: var(--text-sub);
+  font-size: 15px;
+}
+
+/* 作品のポイント（チェックマーク付きの箇条書き） */
+.work-points {
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+
+.work-points li {
+  padding-left: 1.4em;
+  position: relative;
+}
+
+.work-points li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--main);
+  font-weight: 700;
+}
+
+.work-links {
+  margin-top: auto;           /* ボタンをカードの一番下に寄せる */
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.work-note {
+  margin-top: auto !important;
+  font-size: 13px !important;
+}
+
+/* ===== タグ（使った技術） ===== */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--main);
+  background-color: var(--main-light);
+}
+
+/* ===== 使える技術 ===== */
+.skills {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.skill-group {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background-color: var(--card);
+}
+
+.skill-group h3 {
+  margin: 0 0 16px;
+  font-size: 17px;
+}
+
+.skill-group .tags {
+  margin: 0;
+}
+
+/* ===== 連絡先 ===== */
+.contact {
+  text-align: center;
+}
+
+.contact p {
+  color: var(--text-sub);
+  margin: 0 0 24px;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ===== 一番下 ===== */
+.site-footer {
+  padding: 28px 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-sub);
+  border-top: 1px solid var(--line);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* =====================================================
+   スマホなど小さい画面用の見た目（画面の幅が 760px 以下のとき）
+   ===================================================== */
+@media (max-width: 760px) {
+  .sp-only {
+    display: inline;
+  }
+
+  /* ☰ ボタンを出して、メニューは隠しておく */
+  .nav-toggle {
+    display: flex;
+  }
+
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 64px;                /* 上のメニューのすぐ下 */
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background-color: var(--bg);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+  }
+
+  /* script.js が open を付けたら、メニューを出す */
+  .site-nav.open {
+    display: flex;
+  }
+
+  .site-nav a {
+    padding: 16px 20px;
+    border-top: 1px solid var(--line);
+  }
+
+  .hero {
+    padding: 80px 0 72px;
+  }
+
+  .hero-name {
+    font-size: 40px;
+  }
+
+  .hero-lead {
+    font-size: 16px;
+  }
+
+  .section {
+    padding: 64px 0;
+  }
+
+  /* 自己紹介：アイコンと文章を縦に並べる */
+  .about {
+    flex-direction: column;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .about-text {
+    text-align: left;
+  }
+
+  .avatar {
+    width: 128px;
+    height: 128px;
+  }
+
+  /* 作品と技術：1列にする */
+  .works,
+  .skills {
+    grid-template-columns: 1fr;
+  }
+}
